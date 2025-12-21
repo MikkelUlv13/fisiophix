@@ -1,0 +1,633 @@
+:root{
+  /* Ajusta estos valores si luego sacamos el HEX exacto del logo */
+  --brand: #7A2E7A;      /* morado */
+  --brand-2: #9A4A9A;    /* morado claro */
+  --ink: #1a1a1a;
+  --muted: #6b6f76;
+  --line: #e8e8ee;
+  --bg: #ffffff;
+  --surface: #fafafa;
+  --shadow: 0 10px 30px rgba(0,0,0,.08);
+
+  --radius: 18px;
+  --container: 1120px;
+}
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.5;
+}
+
+a{ color:inherit; text-decoration:none; }
+img{ max-width:100%; display:block; }
+
+.container{
+  width:min(var(--container), calc(100% - 40px));
+  margin:0 auto;
+}
+
+/* =========================
+   Header
+========================= */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(255,255,255,.86);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom:1px solid var(--line);
+}
+
+.navbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:14px 0;
+}
+
+/* Marca (logo + texto) */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+/* Si tu HTML es <a class="brand"><img ...><div>...</div></a> */
+.brand > div{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:4px;
+}
+
+/* Logo: recorta el blanco del SVG/PNG usando cover */
+.brand img{
+  height:72px;
+  width:220px;          /* controla el “bloque” del logo */
+  object-fit:cover;     /* recorta blanco */
+  object-position:center;
+  border-radius:12px;   /* opcional (si no quieres, baja a 0) */
+  overflow:hidden;
+}
+
+.brand .name{
+  font-weight:800;
+  letter-spacing:.2px;
+}
+.brand .tag{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:-2px;
+}
+
+/* Navegación */
+.nav-links{
+  display:flex;
+  gap:18px;
+  align-items:center;
+  flex-wrap:nowrap;
+  margin-left:auto; /* empuja menú a la derecha */
+}
+.nav-links a{
+  font-weight:600;
+  color:#222;
+  opacity:.92;
+  white-space:nowrap;
+}
+.nav-links a:hover{ color:var(--brand); }
+
+.nav-cta{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:12px 16px;
+  border-radius:999px;
+  font-weight:800;
+  border:1px solid transparent;
+  cursor:pointer;
+  transition:.18s ease;
+  white-space:nowrap;
+}
+
+.btn-primary{
+  background:var(--brand);
+  color:white;
+  box-shadow: 0 12px 24px rgba(122,46,122,.25);
+}
+.btn-primary:hover{ transform: translateY(-1px); background:#6b276b; }
+
+.btn-ghost{
+  background:transparent;
+  border-color: var(--line);
+}
+.btn-ghost:hover{ border-color:#cfcfe0; transform: translateY(-1px); }
+
+.burger{
+  display:none;
+  border:1px solid var(--line);
+  background:transparent;
+  border-radius:12px;
+  padding:10px 12px;
+}
+
+/* Mobile menu */
+.mobile-panel{
+  display:none;
+  border-top:1px solid var(--line);
+}
+.mobile-panel .links{
+  display:grid;
+  gap:10px;
+  padding:14px 0 18px;
+}
+.mobile-panel a{
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid var(--line);
+}
+.mobile-panel a:hover{ border-color:#cfcfe0; }
+
+/* =========================
+   Hero (home)
+========================= */
+.hero{ padding:64px 0 26px; }
+
+.hero-grid{
+  display:grid;
+  grid-template-columns: 1.25fr .75fr;
+  gap:26px;
+  align-items:stretch;
+}
+
+.hero-card{
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  padding:28px;
+  background:linear-gradient(180deg, #fff, #fbfbff);
+  box-shadow: var(--shadow);
+}
+
+.kicker{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  padding:7px 12px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  color:var(--muted);
+  font-weight:700;
+  font-size:13px;
+}
+
+h1{
+  margin:14px 0 10px;
+  font-size: clamp(28px, 3.5vw, 44px);
+  line-height:1.1;
+  letter-spacing:-.6px;
+}
+
+.lead{
+  margin:0 0 18px;
+  color:var(--muted);
+  font-size: clamp(15px, 1.4vw, 18px);
+}
+
+.hero-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
+
+.trust{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap:10px;
+}
+
+.pill{
+  border:1px solid var(--line);
+  border-radius: 14px;
+  padding:12px 12px;
+  background:white;
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+}
+.pill b{ display:block; }
+.pill span{ color:var(--muted); font-size:13px; }
+
+.side-card{
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  padding:22px;
+  background: var(--surface);
+}
+.side-card h3{
+  margin:0 0 10px;
+  font-size:18px;
+}
+.side-card p{ margin:0 0 14px; color:var(--muted); }
+
+/* =========================
+   Sections
+========================= */
+.section{ padding:34px 0; }
+
+.section-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:18px;
+  margin-bottom:14px;
+}
+.section-head h2{ margin:0; font-size:24px; }
+.section-head p{
+  margin:0;
+  color:var(--muted);
+  max-width:560px;
+}
+
+/* Cards grid */
+.grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap:14px;
+}
+
+.card{
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  padding:18px;
+  background:#7A2E7A;
+  transition:.18s ease;
+}
+
+.card{
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  padding:18px;
+  background:white;
+  transition: 
+    transform .2s ease,
+    box-shadow .2s ease,
+    border-color .2s ease;
+}
+
+/* ✨ Glow al hover */
+.card:hover{
+  transform: translateY(-3px);
+  border-color: rgba(122,46,122,.45);
+
+  box-shadow:
+    0 0 0 1px rgba(122,46,122,.15),
+    0 12px 30px rgba(122,46,122,.25);
+}
+
+/* ✨ Glow al hover */
+.card:hover{
+  transform: translateY(-3px);
+  border-color: rgba(122,46,122,.45);
+
+  box-shadow:
+    0 0 0 1px rgba(122,46,122,.15),
+    0 12px 30px rgba(122,46,122,.25);
+}
+
+.card .meta{
+  margin-top:12px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  color:var(--muted);
+  font-size:13px;
+}
+.link{
+  color:var(--brand);
+  font-weight:800;
+}
+
+/* CTA band */
+.band{
+  margin:22px 0 0;
+  border-radius: var(--radius);
+  border:1px solid var(--line);
+  background: linear-gradient(90deg, rgba(122,46,122,.08), rgba(122,46,122,.02));
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+/* =========================
+   Forms
+========================= */
+.form{
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  padding:18px;
+  background:white;
+}
+
+.form .row{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:12px;
+}
+
+label{
+  display:block;
+  font-size:13px;
+  font-weight:800;
+  margin:10px 0 6px;
+}
+
+input, select, textarea{
+  width:100%;
+  padding:12px 12px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  outline:none;
+  font:inherit;
+}
+input:focus, select:focus, textarea:focus{
+  border-color: rgba(122,46,122,.55);
+  box-shadow: 0 0 0 4px rgba(122,46,122,.12);
+}
+textarea{ min-height:120px; resize:vertical; }
+
+.small{ font-size:13px; color:var(--muted); }
+
+/* =========================
+   Footer
+========================= */
+.site-footer{
+  margin-top:34px;
+  border-top:1px solid var(--line);
+  padding:22px 0;
+  color:var(--muted);
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns: 1.2fr .8fr .8fr;
+  gap:14px;
+}
+.footer-grid h4{ margin:0 0 8px; color:var(--ink); }
+.footer-grid a{ color:var(--muted); }
+.footer-grid a:hover{ color:var(--brand); }
+
+/* WhatsApp Floating */
+.whatsapp{
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  z-index:80;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  border-radius:999px;
+  background:#25D366;
+  color:white;
+  font-weight:900;
+  box-shadow: 0 12px 28px rgba(0,0,0,.18);
+  transition:.18s ease;
+}
+.whatsapp:hover{ transform: translateY(-1px); }
+
+/* =========================
+   SOBRE MI (FOTOS)
+========================= */
+.about-hero{ margin-top:30px; }
+
+.about-hero-grid{
+  display:grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap:28px;
+  align-items:center;
+}
+
+/* Caja de la imagen (sirve para recortar y redondear) */
+.about-hero-img{
+  border-radius: 22px;
+  overflow:hidden;       /* CLAVE: recorta y mantiene esquinas redondas */
+  box-shadow: var(--shadow);
+  background:#f7f7f7;
+}
+
+.about-hero-img img{
+  width:100%;
+  height:420px;          /* hero horizontal */
+  object-fit:cover;      /* se ajusta “bonito” sin deformar */
+  object-position:center;
+  display:block;
+}
+
+/* Sección enfoque */
+.about-work{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:40px;
+  align-items:stretch;
+}
+
+.about-work-img{
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: #f7f7f7;
+
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  -webkit-mask-image: radial-gradient(circle, #fff 100%, #000 100%);
+  clip-path: inset(0 round 22px);
+
+  height: 700px;
+}
+
+.about-work-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+
+/* Card izquierda: que “alcance” la altura de la imagen */
+.about-work-copy{
+  display:flex;
+  flex-direction:column;
+  height:700px;          /* misma altura que la imagen */
+}
+
+/* Lista ocupa espacio y empuja stats abajo */
+.about-list{
+  margin: 14px 0 0;
+  padding: 0;
+  list-style:none;
+  flex:1;
+}
+.about-list li{
+  margin-bottom:10px;
+  font-weight:600;
+  line-height:1.35;
+}
+
+/* Stats */
+.about-stats{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:14px;
+  margin-top:18px;
+  padding-top:16px;
+  border-top:1px solid var(--line);
+  text-align:center;
+}
+.about-stats strong{
+  font-size:22px;
+  color:var(--brand);
+  display:block;
+  line-height:1.1;
+}
+.about-stats span{
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* Caja imagen derecha (mismo truco: border-radius + overflow) */
+.about-work-img{
+  border-radius: 22px;
+  overflow:hidden;
+  box-shadow: var(--shadow);
+  background:#f7f7f7;
+}
+.about-work-img img{
+  width:100%;
+  height:700px;          /* vertical elegante */
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
+
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 920px){
+  .hero-grid{ grid-template-columns:1fr; }
+  .grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .footer-grid{ grid-template-columns:1fr; }
+}
+
+@media (max-width: 900px){
+  .about-hero-grid,
+  .about-work{
+    grid-template-columns:1fr;
+  }
+
+  /* En móvil NO fijes 700px, se ve gigante */
+  .about-work-copy{ height:auto; }
+  .about-hero-img img{ height:260px; }
+  .about-work-img img{ height:360px; }
+}
+
+@media (max-width: 720px){
+  .nav-links, .nav-cta{ display:none; }
+  .burger{ display:inline-flex; }
+  .mobile-panel{ display:block; }
+  .trust{ grid-template-columns:1fr; }
+  .grid{ grid-template-columns:1fr; }
+  .form .row{ grid-template-columns:1fr; }
+}
+
+.map-card{
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: white;
+  box-shadow: var(--shadow);
+}
+
+.map-card iframe{
+  width: 100%;
+  height: 380px;
+  border: 0;
+  display: block;
+}
+
+@media (max-width: 720px){
+  .map-card iframe{ height: 280px; }
+}
+
+.section-head-inline{
+  display:flex;
+  align-items: baseline;
+  gap: 18px;
+}
+
+.section-head-inline h2{
+  margin:0;
+  white-space: nowrap;
+}
+
+.section-head-inline p{
+  margin:0;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 860px;
+}
+
+/* =========================
+   SERVICIOS: grid centrado (última fila)
+========================= */
+
+.services-grid{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;   /* ✅ centra la última fila */
+  gap:14px;
+}
+
+/* Card responsive: 3 por fila en desktop, centrado si sobran */
+.services-grid > .card{
+  flex: 0 1 340px;          /* ancho base (ajústalo si quieres) */
+  max-width: 360px;         /* evita que se estiren demasiado */
+  width: 100%;
+}
+
+/* 2 por fila en pantallas medianas */
+@media (max-width: 920px){
+  .services-grid > .card{
+    flex-basis: 360px;
+    max-width: 420px;
+  }
+}
+
+/* 1 por fila en mobile */
+@media (max-width: 720px){
+  .services-grid > .card{
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+}
