@@ -698,9 +698,8 @@ textarea{ min-height:120px; resize:vertical; }
 
 .mobile-panel{
   display:none;
+  border-top:1px solid var(--line);
 }
-
-.mobile-panel.open{
-  display:block;
+@media (max-width: 720px){
+  .mobile-panel{ display:block; }
 }
-
