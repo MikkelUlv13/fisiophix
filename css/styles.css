@@ -1,5 +1,5 @@
 :root{
-  /* Ajusta estos valores si luego sacamos el HEX exacto del logo */
+  /* Ajustar estos valores si luego se saca el HEX exacto del logo */
   --brand: #7A2E7A;      /* morado */
   --brand-2: #9A4A9A;    /* morado claro */
   --ink: #1a1a1a;
@@ -131,10 +131,17 @@ img{ max-width:100%; display:block; }
 .btn-primary:hover{ transform: translateY(-1px); background:#6b276b; }
 
 .btn-ghost{
-  background:transparent;
-  border-color: var(--line);
+  background: rgba(122,46,122,.06);
+  border-color: rgba(122,46,122,.22);
 }
-.btn-ghost:hover{ border-color:#cfcfe0; transform: translateY(-1px); }
+
+.btn-ghost:hover{
+  transform: translateY(-1px);
+  border-color: rgba(122,46,122,.45);
+  box-shadow:
+    0 14px 34px rgba(0,0,0,.10),
+    0 0 0 4px rgba(122,46,122,.12); /* glow */
+}
 
 .burger{
   display:none;
@@ -149,6 +156,11 @@ img{ max-width:100%; display:block; }
   display:none;
   border-top:1px solid var(--line);
 }
+
+.mobile-panel.open{ display:block; }
+.mobile-panel[hidden]{ display:none !important; }
+
+
 .mobile-panel .links{
   display:grid;
   gap:10px;
@@ -220,17 +232,33 @@ h1{
   gap:10px;
 }
 
+/* Pills (los cuadritos de abajo del hero): borde morado sutil constante */
 .pill{
-  border:1px solid var(--line);
-  border-radius: 14px;
+  border:1px solid rgba(122,46,122,.18);
+  border-radius:14px;
   padding:12px 12px;
   background:white;
   display:flex;
   gap:10px;
   align-items:flex-start;
+  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
 }
-.pill b{ display:block; }
-.pill span{ color:var(--muted); font-size:13px; }
+
+.pill:hover{
+  border-color: rgba(122,46,122,.35);
+  box-shadow: 0 0 0 3px rgba(122,46,122,.08);
+  transform: translateY(-1px);
+}
+
+.pill b{
+  display:block;
+}
+
+.pill span{
+  color:var(--muted);
+  font-size:13px;
+}
+
 
 .side-card{
   border:1px solid var(--line);
@@ -321,6 +349,18 @@ h1{
 .link{
   color:var(--brand);
   font-weight:800;
+}
+
+.card-link{
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.card-link:hover{
+  border-color: var(--brand);
+  box-shadow: 0 14px 30px rgba(122,46,122,.18);
+  transform: translateY(-2px);
 }
 
 /* CTA band */
@@ -544,7 +584,7 @@ textarea{ min-height:120px; resize:vertical; }
     grid-template-columns:1fr;
   }
 
-  /* En móvil NO fijes 700px, se ve gigante */
+  /* En móvil NO fijar 700px, se ve gigante */
   .about-work-copy{ height:auto; }
   .about-hero-img img{ height:260px; }
   .about-work-img img{ height:360px; }
@@ -558,6 +598,10 @@ textarea{ min-height:120px; resize:vertical; }
   .grid{ grid-template-columns:1fr; }
   .form .row{ grid-template-columns:1fr; }
 }
+
+/* =========================
+   MAPA
+========================= */
 
 .map-card{
   border: 1px solid var(--line);
@@ -573,6 +617,7 @@ textarea{ min-height:120px; resize:vertical; }
   border: 0;
   display: block;
 }
+
 
 @media (max-width: 720px){
   .map-card iframe{ height: 280px; }
@@ -605,13 +650,13 @@ textarea{ min-height:120px; resize:vertical; }
 .services-grid{
   display:flex;
   flex-wrap:wrap;
-  justify-content:center;   /* ✅ centra la última fila */
+  justify-content:center;   /* centrar la última fila */
   gap:14px;
 }
 
 /* Card responsive: 3 por fila en desktop, centrado si sobran */
 .services-grid > .card{
-  flex: 0 1 340px;          /* ancho base (ajústalo si quieres) */
+  flex: 0 1 340px;          /* ancho base (ajústable si se quiere) */
   max-width: 360px;         /* evita que se estiren demasiado */
   width: 100%;
 }
@@ -631,3 +676,31 @@ textarea{ min-height:120px; resize:vertical; }
     max-width: 100%;
   }
 }
+
+@media (max-width: 720px){
+  .hero{
+    padding: 40px 0 20px;
+  }
+
+  .hero-card{
+    padding: 20px;
+  }
+
+  h1{
+    font-size: 26px;
+    line-height: 1.15;
+  }
+
+  .lead{
+    font-size: 15px;
+  }
+}
+
+.mobile-panel{
+  display:none;
+}
+
+.mobile-panel.open{
+  display:block;
+}
+
