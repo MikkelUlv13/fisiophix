@@ -1,4 +1,6 @@
 export function renderHeader(active = "") {
+  const isActive = (key) => (active === key ? ' aria-current="page"' : "");
+
   return `
   <header class="site-header">
     <div class="container">
@@ -7,31 +9,39 @@ export function renderHeader(active = "") {
           <img src="assets/logo.svg" alt="Fisiophix" />
         </a>
 
-        <div class="nav-links">
-          <a href="sobre-mi.html"${active==="sobre" ? ' style="color:var(--brand)"' : ""}>Sobre mí</a>
-          <a href="servicios.html"${active==="servicios" ? ' style="color:var(--brand)"' : ""}>Servicios</a>
-          <a href="contacto.html"${active==="contacto" ? ' style="color:var(--brand)"' : ""}>Contacto</a>
+        <div class="nav-links" aria-label="Links principales">
+          <a href="sobre-mi.html"${isActive("sobre")}>Sobre mí</a>
+          <a href="servicios.html"${isActive("servicios")}>Servicios</a>
+          <a href="contacto.html"${isActive("contacto")}>Contacto</a>
         </div>
 
         <div class="nav-cta">
-          <a class="btn btn-primary" href="contacto.html#agendar">Agendar valoración</a>
+          <a class="btn btn-primary" href="contacto.html#agendar">Agendar</a>
         </div>
 
-        <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false">
-          ☰
+        <!-- Hamburguesa (móvil) -->
+        <button
+          class="burger"
+          id="burger"
+          type="button"
+          aria-label="Abrir menú"
+          aria-controls="mobilePanel"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
         </button>
       </nav>
 
+      <!-- Panel móvil -->
       <div class="mobile-panel" id="mobilePanel" hidden>
-        <div class="links">
-          <a href="servicios.html">Servicios</a>
-          <a href="sobre-mi.html">Sobre mí</a>
-          <a href="contacto.html">Contacto</a>
-          <a class="btn btn-primary" href="contacto.html#agendar">Agendar valoración</a>
-        </div>
+        <a href="sobre-mi.html">Sobre mí</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="contacto.html">Contacto</a>
+        <a class="btn btn-primary" href="contacto.html#agendar">Agendar</a>
       </div>
     </div>
-  </header>`;
+  </header>
+  `;
 }
 
 export function renderFooter() {
@@ -41,32 +51,27 @@ export function renderFooter() {
     <div class="container">
       <div class="footer-grid">
         <div>
-          <h4>FisioPhix</h4>
-          <div class="small">
-            Atención en consultorio ubicado en Médica Taxqueña, Alcaldía Coyoacán, CDMX.<br/>
-            Con enfoque clínico, uso de tecnología y planes personalizados.
-          </div>
+          <b>Fisiophix</b>
+          <div class="small">Fisioterapia con enfoque clínico y seguimiento.</div>
         </div>
 
         <div>
-          <h4>Secciones</h4>
-          <div class="small" style="display:grid; gap:6px;">
-            <a href="servicios.html">Servicios</a>
-            <a href="contacto.html">Contacto</a>
-          </div>
-        </div>
-
-        <div>
-          <h4>Contacto</h4>
+          <b>Contacto</b>
           <div class="small">
             Tel: <a href="tel:+525513362954">55 13 36 29 54</a><br/>
-            Email: <a href="mailto:fisioterapialuviano@hotmail.com">fisioterapialuviano@hotmail.com</a>
+            Email: <a href="mailto:fisiophix@gmail.com">fisiophix@gmail.com</a><br/>
+            Instagram: <a href="https://www.instagram.com/fisiophix"
+            target="_blank"
+            rel="noopener"
+            > @fisiophix 
+            </a>
+
           </div>
         </div>
       </div>
 
       <div class="small" style="margin-top:14px;">
-        © ${year} FisioPhix. Todos los derechos reservados.
+        © ${year} Fisiophix. Todos los derechos reservados.
       </div>
     </div>
   </footer>`;
