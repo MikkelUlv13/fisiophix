@@ -6,7 +6,7 @@ export function renderHeader(active = "") {
     <div class="container">
       <nav class="navbar" aria-label="Navegación principal">
         <a class="brand" href="index.html">
-          <img src="assets/logo.svg" alt="Fisiophix" />
+          <img src="./assets/logo.svg" alt="Fisiophix" />
         </a>
 
         <div class="nav-links" aria-label="Links principales">
