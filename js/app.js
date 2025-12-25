@@ -12,7 +12,6 @@ function getActivePage() {
 function setupMenu() {
   const burger = document.getElementById("burger");
   const panel = document.getElementById("mobilePanel");
-
   if (!burger || !panel) return;
 
   const closeMenu = () => {
@@ -71,9 +70,29 @@ function injectWhatsApp() {
   document.body.appendChild(a);
 }
 
+// ✅ Esto reemplaza el script inline del form sin romper otras páginas
+function setupAgendarForm() {
+  const form = document.getElementById("agendar");
+  if (!form) return;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("name")?.value.trim() || "";
+    const phone = document.getElementById("phone")?.value.trim() || "";
+    const mode = document.getElementById("mode")?.value || "";
+    const reason = document.getElementById("reason")?.value.trim() || "";
+
+    const msg = encodeURIComponent(
+      `Hola, soy ${name}. Mi teléfono es ${phone}. Quiero agendar valoración.\nModalidad: ${mode}\nMotivo: ${reason || "No especificado"}`
+    );
+
+    window.open(`https://wa.me/525513362954?text=${msg}`, "_blank", "noopener");
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   injectLayout();
   injectWhatsApp();
-});
-
+  setupAgendarForm();
 });
