@@ -727,3 +727,72 @@ textarea{ min-height:120px; resize:vertical; }
   margin-top:10px;
 }
 
+/* =========================
+   HAMBURGUESA – MORADA + GLOW
+========================= */
+
+.burger{
+  border:1px solid rgba(122,46,122,.35);
+  background:rgba(122,46,122,.06);
+  border-radius:14px;
+  padding:12px 14px;
+  cursor:pointer;
+  transition: 
+    transform .2s ease,
+    box-shadow .2s ease,
+    border-color .2s ease,
+    background .2s ease;
+}
+
+/* Líneas de la hamburguesa */
+.burger span{
+  display:block;
+  width:22px;
+  height:2.5px;
+  background: var(--brand);
+  border-radius:2px;
+  transition: 
+    transform .2s ease,
+    opacity .2s ease,
+    background .2s ease;
+}
+
+.burger span + span{
+  margin-top:5px;
+}
+
+/* Hover / tap */
+.burger:hover,
+.burger:focus-visible{
+  border-color: rgba(122,46,122,.6);
+  background: rgba(122,46,122,.12);
+  box-shadow:
+    0 0 0 4px rgba(122,46,122,.18),
+    0 12px 30px rgba(122,46,122,.35);
+  transform: translateY(-1px);
+}
+
+/* Cuando el menú está abierto (aria-expanded) */
+.burger[aria-expanded="true"]{
+  background: var(--brand);
+  border-color: var(--brand);
+  box-shadow:
+    0 0 0 4px rgba(122,46,122,.25),
+    0 14px 34px rgba(122,46,122,.45);
+}
+
+/* Líneas en blanco cuando está abierto */
+.burger[aria-expanded="true"] span{
+  background:white;
+}
+
+/* Animación tipo X (opcional pero pro) */
+.burger[aria-expanded="true"] span:nth-child(1){
+  transform: translateY(7px) rotate(45deg);
+}
+.burger[aria-expanded="true"] span:nth-child(2){
+  opacity:0;
+}
+.burger[aria-expanded="true"] span:nth-child(3){
+  transform: translateY(-7px) rotate(-45deg);
+}
