@@ -728,71 +728,78 @@ textarea{ min-height:120px; resize:vertical; }
 }
 
 /* =========================
-   HAMBURGUESA – MORADA + GLOW
+   FIX hamburguesa (móvil): alineación + morado + glow
+   Pegar al FINAL del CSS
 ========================= */
 
 .burger{
-  border:1px solid rgba(122,46,122,.35);
-  background:rgba(122,46,122,.06);
-  border-radius:14px;
-  padding:12px 14px;
-  cursor:pointer;
-  transition: 
-    transform .2s ease,
-    box-shadow .2s ease,
-    border-color .2s ease,
-    background .2s ease;
+  /* reset básico */
+  appearance: none;
+  -webkit-appearance: none;
+
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+  width: 54px;
+  height: 42px;
+
+  border: 1px solid rgba(122,46,122,.35) !important;
+  background: rgba(122,46,122,.06) !important;
+  border-radius: 14px;
+
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
 }
 
-/* Líneas de la hamburguesa */
+/* Cada “raya” */
 .burger span{
-  display:block;
-  width:22px;
-  height:2.5px;
-  background: var(--brand);
-  border-radius:2px;
-  transition: 
-    transform .2s ease,
-    opacity .2s ease,
-    background .2s ease;
+  display: block !important;
+  width: 26px !important;
+  height: 3px !important;
+  background: var(--brand) !important;
+  border-radius: 999px;
+
+  /* evita que se “achiquen” raro */
+  flex: 0 0 auto;
+
+  transition: transform .2s ease, opacity .2s ease, background .2s ease;
 }
 
-.burger span + span{
-  margin-top:5px;
-}
-
-/* Hover / tap */
+/* Glow al tocar / hover */
 .burger:hover,
+.burger:active,
 .burger:focus-visible{
-  border-color: rgba(122,46,122,.6);
-  background: rgba(122,46,122,.12);
+  border-color: rgba(122,46,122,.65) !important;
+  background: rgba(122,46,122,.12) !important;
   box-shadow:
     0 0 0 4px rgba(122,46,122,.18),
-    0 12px 30px rgba(122,46,122,.35);
+    0 12px 30px rgba(122,46,122,.25);
   transform: translateY(-1px);
+  outline: none;
 }
 
-/* Cuando el menú está abierto (aria-expanded) */
+/* Estado abierto (JS cambia aria-expanded) */
 .burger[aria-expanded="true"]{
-  background: var(--brand);
-  border-color: var(--brand);
+  background: var(--brand) !important;
+  border-color: var(--brand) !important;
   box-shadow:
-    0 0 0 4px rgba(122,46,122,.25),
-    0 14px 34px rgba(122,46,122,.45);
+    0 0 0 4px rgba(122,46,122,.22),
+    0 14px 34px rgba(122,46,122,.35);
 }
 
-/* Líneas en blanco cuando está abierto */
+/* Rayas blancas cuando está abierto + animación X */
 .burger[aria-expanded="true"] span{
-  background:white;
+  background: #fff !important;
 }
-
-/* Animación tipo X (opcional pero pro) */
 .burger[aria-expanded="true"] span:nth-child(1){
-  transform: translateY(7px) rotate(45deg);
+  transform: translateY(9px) rotate(45deg);
 }
 .burger[aria-expanded="true"] span:nth-child(2){
-  opacity:0;
+  opacity: 0;
 }
 .burger[aria-expanded="true"] span:nth-child(3){
-  transform: translateY(-7px) rotate(-45deg);
+  transform: translateY(-9px) rotate(-45deg);
 }
