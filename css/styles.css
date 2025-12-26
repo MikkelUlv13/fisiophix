@@ -151,28 +151,6 @@ img{ max-width:100%; display:block; }
   padding:10px 12px;
 }
 
-/* Mobile menu */
-.mobile-panel{
-  display:none;
-  border-top:1px solid var(--line);
-}
-
-.mobile-panel.open{ display:block; }
-.mobile-panel[hidden]{ display:none !important; }
-
-
-.mobile-panel .links{
-  display:grid;
-  gap:10px;
-  padding:14px 0 18px;
-}
-.mobile-panel a{
-  padding:10px 12px;
-  border-radius:12px;
-  border:1px solid var(--line);
-}
-.mobile-panel a:hover{ border-color:#cfcfe0; }
-
 /* =========================
    Hero (home)
 ========================= */
@@ -696,10 +674,56 @@ textarea{ min-height:120px; resize:vertical; }
   }
 }
 
-.mobile-panel{
-  display:none;
-  border-top:1px solid var(--line);
+/* =========================
+   FIX DEFINITIVO MENU MOVIL
+========================= */
+
+/* 1) Dibuja las 3 rayitas del burger */
+.burger span{
+  display:block;
+  width:22px;
+  height:2px;
+  background:#222;
+  border-radius:2px;
 }
+.burger span + span{ margin-top:5px; }
+
+/* 2) El panel móvil lo controla JS con hidden + open */
+.mobile-panel{
+  border-top:1px solid var(--line);
+  padding:14px 0 18px;
+}
+
+/* Desktop: no existe el menú móvil */
+@media (min-width: 721px){
+  .mobile-panel{ display:none !important; }
+}
+
+/* Mobile: el panel “puede existir”, pero hidden manda */
 @media (max-width: 720px){
   .mobile-panel{ display:block; }
 }
+
+/* hidden gana siempre */
+.mobile-panel[hidden]{ display:none !important; }
+
+/* open lo muestra aunque antes estuviera cerrado */
+.mobile-panel.open{ display:block !important; }
+
+/* Estilos reales para los links del panel (HTML NO tiene .links) */
+.mobile-panel a{
+  display:block;
+  margin:10px 0;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid var(--line);
+}
+.mobile-panel a:hover{ border-color:#cfcfe0; }
+
+/* Si hay botón dentro del panel, hace que se vea bien */
+.mobile-panel .btn{
+  width:100%;
+  justify-content:center;
+  margin-top:10px;
+}
+
